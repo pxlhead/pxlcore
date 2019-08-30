@@ -1,7 +1,7 @@
-node_modules/
-coverage/
-dist/
-lib/
+/node_modules
+/coverage
+/dist
+/lib
 .DS_Store
 npm-debug.log*
 .node-version
