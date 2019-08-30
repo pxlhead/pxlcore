@@ -49,7 +49,7 @@ export default Vue => {
 const getSiteFile = name =>
   `<template>
   <div class="${toKebabCase(name)}">
-    <${toKebabCase(name)} />
+    <pxl-${toKebabCase(name)} />
   </div>
 </template>
 
@@ -63,11 +63,17 @@ const writeToFile = (contents, file) => {
   new shelljs.ShellString(contents).to(file)
 }
 
-const [singleName] = process.argv.slice(2)
+let [singleName] = process.argv.slice(2)
 
 if (!singleName) {
   shelljs.echo('🙈  See no component name. Please provide it.')
   shelljs.exit(1)
+}
+
+singleName = `${singleName.charAt(0).toUpperCase()}${singleName.slice(1)}`
+
+if (singleName.slice(0, 3).toLowerCase() === 'pxl') {
+  singleName = singleName.slice(3)
 }
 
 const name = `Pxl${singleName}`
@@ -85,7 +91,7 @@ if (!shelljs.test('-e', componentPath) || !shelljs.test('-e', sitePath)) {
   writeToFile(getIndexFile(name), 'index.js')
 
   shelljs.cd(rootDir)
-  new shelljs.ShellString(`export { default as ${name} } from './${name}'`).toEnd(componentIndex)
+  new shelljs.ShellString(`export { default as ${name} } from './${name}'\n`).toEnd(componentIndex)
   shelljs.sort(componentIndex)
 
   shelljs.mkdir('-p', sitePath)
@@ -102,7 +108,7 @@ if (!shelljs.test('-e', componentPath) || !shelljs.test('-e', sitePath)) {
   shelljs.sed(
     '-i',
     ']',
-    `{ path: '/components/${singleName.toLowerCase()}', component: ${singleName} }]`,
+    `  {\npath: '/components/${singleName.toLowerCase()}',\ncomponent: ${singleName},\n},\n]`,
     routesIndex
   )
 
