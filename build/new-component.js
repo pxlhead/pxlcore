@@ -15,13 +15,13 @@ const getVueComponent = name =>
 </template>
 
 <script>
-  export default {
-    name: '${name}',
-    props: {},
-  }
+export default {
+  name: '${name}',
+  props: {},
+}
 </script>
 
-<style lang="scss"></style>`
+<style lang="scss"></style>\n`
 
 const getTestFile = name => {
   const kebabName = toKebabCase(name)
@@ -32,11 +32,11 @@ import ${name} from './${name}.vue'
 describe('${name}.vue', () => {
   test('renders correctly', () => {
     const wrapper = shallowMount(${name})
-    expect(wrapper.name()).toBe(${name})
+    expect(wrapper.name()).toBe('${name}')
     expect(wrapper.classes('${kebabName}')).toBe(true)
     expect(wrapper.isVueInstance()).toBeTruthy()
   })
-})`
+})\n`
 }
 
 const getIndexFile = name =>
@@ -44,21 +44,20 @@ const getIndexFile = name =>
 
 export default Vue => {
   Vue.component(${name}.name, ${name})
-}`
+}\n`
 
 const getSiteFile = name =>
   `<template>
   <div class="${toKebabCase(name)}">
-    <slot />
+    <${toKebabCase(name)} />
   </div>
 </template>
 
 <script>
-  export default {
-    name: '${name}',
-  }
-</script>
-`
+export default {
+  name: '${name}',
+}
+</script>\n`
 
 const writeToFile = (contents, file) => {
   new shelljs.ShellString(contents).to(file)
@@ -78,7 +77,7 @@ const componentIndex = 'src/components/index.js'
 const routesIndex = 'site/routes.js'
 const sitePath = `site/pages/components/${singleName}`
 
-if (!test('-e', componentPath) || !test('-e', sitePath)) {
+if (!shelljs.test('-e', componentPath) || !shelljs.test('-e', sitePath)) {
   shelljs.mkdir('-p', componentPath)
   shelljs.cd(componentPath)
   writeToFile(getVueComponent(name), `${name}.vue`)
@@ -92,6 +91,8 @@ if (!test('-e', componentPath) || !test('-e', sitePath)) {
   shelljs.mkdir('-p', sitePath)
   shelljs.cd(sitePath)
   writeToFile(getSiteFile(singleName), `${singleName}.vue`)
+
+  shelljs.cd(rootDir)
   shelljs.sed(
     '-i',
     "'./pages/home/Home.vue'",
@@ -100,8 +101,8 @@ if (!test('-e', componentPath) || !test('-e', sitePath)) {
   )
   shelljs.sed(
     '-i',
-    '},\n]',
-    `},\n{ path: '/components/${singleName.toLowerCase()}', component: ${singleName} }]`,
+    ']',
+    `{ path: '/components/${singleName.toLowerCase()}', component: ${singleName} }]`,
     routesIndex
   )
 
