@@ -7,8 +7,9 @@
   },
   "extends": [
     "plugin:vue/recommended",
-    "plugin:prettier/recommended",
     "eslint:recommended",
+    "prettier/vue",
+    "plugin:prettier/recommended",
     "plugin:import/errors",
     "plugin:import/warnings"
   ],
@@ -24,6 +25,7 @@
     "VueI18n": "readonly"
   },
   "rules": {
-    "import/namespace": [2, { "allowComputed": true }]
+    "import/namespace": [2, { "allowComputed": true }],
+    "vue/require-default-prop": 0
   }
 }
