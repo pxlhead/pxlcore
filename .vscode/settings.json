@@ -1,15 +1,12 @@
 {
   "editor.formatOnSave": true,
 
-  // "vetur.format.defaultFormatter.html": "prettier",
-  // "vetur.format.defaultFormatter.scss": "prettier",
-  // "vetur.format.defaultFormatter.css": "prettier",
-  // "vetur.format.defaultFormatter.js": "prettier",
-  // "vetur.experimental.templateInterpolationService": false,
-  // "vetur.validation.template": false,
+  "vetur.validation.template": false,
+  "vetur.format.defaultFormatter.scss": "prettier",
+  "vetur.format.defaultFormatter.css": "prettier",
+  "vetur.format.defaultFormatter.js": "prettier",
 
   "prettier.eslintIntegration": true,
-  // "prettier.disableLanguages": [],
 
   "eslint.autoFixOnSave": true,
   "eslint.options": { "extensions": [".html", ".js", ".vue", ".jsx"] },
@@ -20,5 +17,8 @@
       "language": "vue",
       "autoFix": true
     }
-  ]
+  ],
+
+  "javascript.validate.enable": false,
+  "javascript.format.enable": false
 }
