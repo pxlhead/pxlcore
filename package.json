@@ -10,7 +10,7 @@
     "build:icons": "node build/icon-components/index.js",
     "build": "npm run clean && npm run build:lib",
     "new-component": "node build/new-component.js",
-    "test": "jest --watchAll",
+    "test": "jest --watch",
     "format": "prettier-eslint --write",
     "format:icons": "prettier-eslint \"src/components/PxlIcon/icons/*\" --write",
     "clean": "rm -rf dist && rm -rf lib"
