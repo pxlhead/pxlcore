@@ -24,37 +24,41 @@ describe('PxlIcon.vue', () => {
     })
   })
 
-  test('adds size class when size is passed', () => {
+  test('adds size class', () => {
     const wrapper = shallowMount(PxlIcon, {
-      propsData: { name: 'add', size: 'xs' },
+      propsData: { name: 'add' },
     })
+    expect(wrapper.classes('pxl-icon--m')).toBe(true)
 
-    expect(wrapper.classes()).toContain('pxl-icon--xs')
+    wrapper.setProps({ size: 'xs' })
+    expect(wrapper.classes('pxl-icon--xs')).toBe(true)
     wrapper.setProps({ size: 's' })
-    expect(wrapper.classes()).toContain('pxl-icon--s')
+    expect(wrapper.classes('pxl-icon--s')).toBe(true)
     wrapper.setProps({ size: 'm' })
-    expect(wrapper.classes()).toContain('pxl-icon--m')
+    expect(wrapper.classes('pxl-icon--m')).toBe(true)
     wrapper.setProps({ size: 'l' })
-    expect(wrapper.classes()).toContain('pxl-icon--l')
+    expect(wrapper.classes('pxl-icon--l')).toBe(true)
     wrapper.setProps({ size: 'xl' })
-    expect(wrapper.classes()).toContain('pxl-icon--xl')
+    expect(wrapper.classes('pxl-icon--xl')).toBe(true)
   })
 
-  test('adds color class when color is passed', () => {
+  test('adds color class', () => {
     const wrapper = shallowMount(PxlIcon, {
-      propsData: { name: 'add', color: 'primary' },
+      propsData: { name: 'add' },
     })
+    expect(wrapper.classes('pxl-icon--primary')).toBe(true)
 
-    expect(wrapper.classes()).toContain('pxl-icon--primary')
+    wrapper.setProps({ color: 'primary' })
+    expect(wrapper.classes('pxl-icon--primary')).toBe(true)
     wrapper.setProps({ color: 'success' })
-    expect(wrapper.classes()).toContain('pxl-icon--success')
-    wrapper.setProps({ color: 'error' })
-    expect(wrapper.classes()).toContain('pxl-icon--error')
+    expect(wrapper.classes('pxl-icon--success')).toBe(true)
+    wrapper.setProps({ color: 'danger' })
+    expect(wrapper.classes('pxl-icon--danger')).toBe(true)
     wrapper.setProps({ color: 'warning' })
-    expect(wrapper.classes()).toContain('pxl-icon--warning')
+    expect(wrapper.classes('pxl-icon--warning')).toBe(true)
     wrapper.setProps({ color: 'dark' })
-    expect(wrapper.classes()).toContain('pxl-icon--dark')
+    expect(wrapper.classes('pxl-icon--dark')).toBe(true)
     wrapper.setProps({ color: 'light' })
-    expect(wrapper.classes()).toContain('pxl-icon--light')
+    expect(wrapper.classes('pxl-icon--light')).toBe(true)
   })
 })
