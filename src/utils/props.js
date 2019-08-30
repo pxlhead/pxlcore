@@ -9,9 +9,3 @@ export const sizeXProp = {
   default: 'm',
   validator: val => ['xs', 's', 'm', 'l', 'xl'].includes(val),
 }
-
-export const colorProp = {
-  type: String,
-  default: 'primary',
-  validator: val => ['primary', 'success', 'error', 'warning', 'dark', 'light'].includes(val),
-}

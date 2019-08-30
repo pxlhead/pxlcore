@@ -6,7 +6,7 @@
 
 <script>
 import { toPascalCase } from '../../utils'
-import { sizeXProp, colorProp } from '../../utils/props'
+import { sizeXProp } from '../../utils/props'
 import * as icons from './icons'
 
 export default {
@@ -17,8 +17,12 @@ export default {
       required: true,
       validator: val => Object.keys(icons).includes(toPascalCase(val)),
     },
+    color: {
+      type: String,
+      default: 'primary',
+      validator: val => ['primary', 'success', 'danger', 'warning', 'dark', 'light'].includes(val),
+    },
     size: sizeXProp,
-    color: colorProp,
   },
   computed: {
     icon() {
