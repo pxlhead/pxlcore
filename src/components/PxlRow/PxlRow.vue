@@ -4,7 +4,9 @@
       'pxl-row',
       `pxl-row--align-${align}`,
       `pxl-row--justify-${justify}`,
-      `pxl-row--margin-${margin}`,
+      {
+        [`pxl-row--margin-${margin}`]: margin || contentMargin,
+      },
     ]"
     :style="
       gutter
@@ -21,12 +23,16 @@
 </template>
 
 <script>
+import { spacingProp } from '../../utils/props'
+
 export default {
   name: 'PxlRow',
 
   provide: {
     gutter: this.gutter,
   },
+
+  inject: ['contentMargin'],
 
   props: {
     gutter: Number,
@@ -42,11 +48,7 @@ export default {
         ['start' | 'end' | 'center' | 'space-around' | 'space-between'].includes(val),
     },
     flexBasis: String,
-    margin: {
-      type: String,
-      default: 'none',
-      validator: val => ['none' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl'].includes(val),
-    },
+    margin: spacingProp,
   },
 }
 </script>
