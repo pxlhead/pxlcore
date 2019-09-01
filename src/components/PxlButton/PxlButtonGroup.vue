@@ -7,6 +7,7 @@
 <script>
 export default {
   name: 'PxlButtonGroup',
+
   props: {
     join: Boolean,
   },

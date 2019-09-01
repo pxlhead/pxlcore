@@ -11,6 +11,7 @@ import * as icons from './icons'
 
 export default {
   name: 'PxlIcon',
+
   props: {
     name: {
       type: String,
@@ -24,6 +25,7 @@ export default {
     },
     size: sizeXProp,
   },
+
   computed: {
     icon() {
       return icons[toPascalCase(this.name)]

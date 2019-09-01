@@ -17,6 +17,7 @@ const getVueComponent = name =>
 <script>
 export default {
   name: '${name}',
+
   props: {},
 }
 </script>

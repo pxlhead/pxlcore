@@ -32,9 +32,11 @@ import { sizeXProp } from '../../utils/props'
 
 export default {
   name: 'PxlButton',
+
   components: {
     PxlIcon,
   },
+
   props: {
     type: {
       type: String,
@@ -71,6 +73,7 @@ export default {
     skeleton: Boolean,
     shadow: Boolean,
   },
+
   computed: {
     isButton() {
       return this.type === 'button'
