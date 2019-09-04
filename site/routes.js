@@ -1,4 +1,5 @@
 import Home from './pages/home/Home.vue'
+import Input from './pages/components/Input/Input.vue'
 import Layout from './pages/components/Layout/Layout.vue'
 import Col from './pages/components/Col/Col.vue'
 import Row from './pages/components/Row/Row.vue'
@@ -30,5 +31,9 @@ export default [
   {
     path: '/components/layout',
     component: Layout,
+  },
+  {
+    path: '/components/input',
+    component: Input,
   },
 ]
