@@ -2,8 +2,8 @@
   <div
     :class="[
       'pxl-row',
-      `pxl-row--align-${align}`,
-      `pxl-row--justify-${justify}`,
+      `pxl-row--${align}`,
+      `pxl-row--${justify}`,
       {
         [`pxl-row--margin-${margin}`]: margin || contentMargin,
       },
