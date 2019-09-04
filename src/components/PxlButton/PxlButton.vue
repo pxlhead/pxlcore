@@ -21,7 +21,9 @@
     :disabled="isDisabled"
     @click="$emit('click', $event)"
   >
-    <pxl-icon v-if="loading || icon" :name="loading ? 'loading' : icon" />
+    <slot name="icon">
+      <pxl-icon v-if="loading || icon" :name="loading ? 'loading' : icon" />
+    </slot>
     <span v-if="label" class="pxl-button__label">{{ label }}</span>
   </component>
 </template>
