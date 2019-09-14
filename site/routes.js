@@ -1,4 +1,5 @@
 import Home from './pages/home/Home.vue'
+import Radio from './pages/components/Radio/Radio.vue'
 import Input from './pages/components/Input/Input.vue'
 import Layout from './pages/components/Layout/Layout.vue'
 import Col from './pages/components/Col/Col.vue'
@@ -35,5 +36,9 @@ export default [
   {
     path: '/components/input',
     component: Input,
+  },
+  {
+    path: '/components/radio',
+    component: Radio,
   },
 ]
