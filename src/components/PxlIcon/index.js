@@ -1,5 +1,7 @@
 import PxlIcon from './PxlIcon.vue'
 
-export default Vue => {
+PxlIcon.install = Vue => {
   Vue.component(PxlIcon.name, PxlIcon)
 }
+
+export default PxlIcon

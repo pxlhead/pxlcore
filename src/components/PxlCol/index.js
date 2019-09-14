@@ -1,5 +1,7 @@
 import PxlCol from './PxlCol.vue'
 
-export default Vue => {
+PxlCol.install = Vue => {
   Vue.component(PxlCol.name, PxlCol)
 }
+
+export default PxlCol

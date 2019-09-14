@@ -43,9 +43,11 @@ describe('${name}.vue', () => {
 const getIndexFile = name =>
   `import ${name} from './${name}.vue'
 
-export default Vue => {
+${name}.install = Vue => {
   Vue.component(${name}.name, ${name})
-}\n`
+}
+
+export default ${name}\n`
 
 const getSiteFile = name =>
   `<template>
@@ -92,7 +94,13 @@ if (!shelljs.test('-e', componentPath) || !shelljs.test('-e', sitePath)) {
   writeToFile(getIndexFile(name), 'index.js')
 
   shelljs.cd(rootDir)
-  new shelljs.ShellString(`export { default as ${name} } from './${name}'\n`).toEnd(componentIndex)
+  shelljs.sed(
+    '-i',
+    /const components = \[/,
+    `import ${name} from './${name}'\n\nconst components = [\n  ${name},\n`,
+    componentIndex
+  )
+  shelljs.sed('-i', 'export {', `export {\n  ${name},\n`, componentIndex)
   shelljs.sort(componentIndex)
 
   shelljs.mkdir('-p', sitePath)

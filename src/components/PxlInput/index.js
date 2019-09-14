@@ -1,5 +1,7 @@
 import PxlInput from './PxlInput.vue'
 
-export default Vue => {
+PxlInput.install = Vue => {
   Vue.component(PxlInput.name, PxlInput)
 }
+
+export default PxlInput

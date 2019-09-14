@@ -1,5 +1,7 @@
 import PxlRow from './PxlRow.vue'
 
-export default Vue => {
+PxlRow.install = Vue => {
   Vue.component(PxlRow.name, PxlRow)
 }
+
+export default PxlRow
