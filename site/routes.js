@@ -1,4 +1,5 @@
 import Home from './pages/home/Home.vue'
+import Checkbox from './pages/components/Checkbox/Checkbox.vue'
 import Radio from './pages/components/Radio/Radio.vue'
 import Input from './pages/components/Input/Input.vue'
 import Layout from './pages/components/Layout/Layout.vue'
@@ -40,5 +41,9 @@ export default [
   {
     path: '/components/radio',
     component: Radio,
+  },
+  {
+    path: '/components/checkbox',
+    component: Checkbox,
   },
 ]
