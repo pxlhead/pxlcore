@@ -1,6 +1,6 @@
 export const sizeProp = {
   type: String,
-  default: 'medium',
+  default: 'm',
   validator: val => ['s', 'm', 'l'].includes(val),
 }
 
