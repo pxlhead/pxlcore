@@ -24,7 +24,7 @@
         :id="computedId"
         ref="input"
         :value="value"
-        class="pxl-input__inner"
+        class="pxl-input__original"
         :type="type"
         :required="required"
         :disabled="disabled"
