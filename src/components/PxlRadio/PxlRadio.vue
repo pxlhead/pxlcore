@@ -7,7 +7,7 @@
       class="pxl-radio__original"
       type="radio"
       :disabled="disabled"
-      :checked="groupValue ? groupValue === value : checked"
+      :checked="isChecked"
       v-bind="$attrs"
       @input="$emit('change', checked)"
     />
@@ -16,6 +16,7 @@
 
 <script>
 import { sizeProp } from '../../utils/props'
+import { getParentComponent } from '../../utils/vdom'
 
 export default {
   name: 'PxlRadio',
@@ -35,6 +36,22 @@ export default {
     label: String,
     size: sizeProp,
     disabled: Boolean,
+  },
+
+  computed: {
+    isChecked() {
+      return this.groupValue ? this.groupValue === this.value : this.checked
+    },
+  },
+
+  methods: {
+    getParentComponent,
+    handleChange() {
+      if (this.groupValue) {
+        this.getParentComponent('PxlCheckboxGroup').setValue(this.value)
+      }
+      this.$emit('change', this.isChecked)
+    },
   },
 }
 </script>

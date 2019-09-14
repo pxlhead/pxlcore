@@ -44,6 +44,12 @@ export default {
     disabled: Boolean,
     required: Boolean,
   },
+
+  methods: {
+    setValue(value) {
+      this.$emit('change', value)
+    },
+  },
 }
 </script>
 
