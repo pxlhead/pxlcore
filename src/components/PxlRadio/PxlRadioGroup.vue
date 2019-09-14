@@ -28,8 +28,8 @@ export default {
 
   inheritAttrs: false,
 
-  provide: {
-    groupValue: this.value,
+  provide() {
+    return { groupValue: this.value }
   },
 
   model: {

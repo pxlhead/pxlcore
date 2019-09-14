@@ -10,8 +10,8 @@ import { spacingProp } from '../../utils/props'
 export default {
   name: 'PxlContent',
 
-  provide: {
-    contentMargin: this.rowMargin,
+  provide() {
+    return { contentMargin: this.rowMargin }
   },
 
   props: {

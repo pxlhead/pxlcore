@@ -28,8 +28,8 @@ import { spacingProp } from '../../utils/props'
 export default {
   name: 'PxlRow',
 
-  provide: {
-    gutter: this.gutter,
+  provide() {
+    return { gutter: this.gutter }
   },
 
   inject: ['contentMargin'],
