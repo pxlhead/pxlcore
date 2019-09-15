@@ -1,4 +1,5 @@
 import Home from './pages/home/Home.vue'
+import Popover from './pages/components/Popover/Popover.vue'
 import Checkbox from './pages/components/Checkbox/Checkbox.vue'
 import Radio from './pages/components/Radio/Radio.vue'
 import Input from './pages/components/Input/Input.vue'
@@ -45,5 +46,9 @@ export default [
   {
     path: '/components/checkbox',
     component: Checkbox,
+  },
+  {
+    path: '/components/popover',
+    component: Popover,
   },
 ]

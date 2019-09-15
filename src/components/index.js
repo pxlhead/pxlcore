@@ -8,7 +8,11 @@ import PxlRadio from './PxlRadio'
 
 import PxlCheckbox from './PxlCheckbox'
 
+import PxlPopover from './PxlPopover'
+
 const components = [
+  PxlPopover,
+
   PxlCheckbox,
 PxlIcon, PxlButton, PxlRow, PxlCol, PxlLayout, PxlInput, PxlRadio]
 
@@ -23,6 +27,8 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export {
+  PxlPopover,
+
   PxlCheckbox,
  PxlIcon, PxlButton, PxlRow, PxlCol, PxlLayout, PxlInput, PxlRadio }
 
