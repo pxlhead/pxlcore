@@ -31,7 +31,6 @@
         :readonly="readonly"
         v-bind="$attrs"
         @input="$emit('input', $event.target.value)"
-        @keydown="handleKeyDown"
         @focus="$emit('focus', $event)"
         @blur="$emit('blur', $event)"
       />
@@ -97,18 +96,6 @@ export default {
     },
     select() {
       this.$refs.input.select()
-    },
-    handleKeyDown(event) {
-      if (event.key === 'Enter') {
-        this.$emit('enter', event)
-      }
-
-      if (event.key === 'Escape') {
-        this.$emit('escape', event)
-        this.blur()
-      }
-
-      this.$emit('keydown', event)
     },
     handleClear() {
       this.$emit('input', '')
