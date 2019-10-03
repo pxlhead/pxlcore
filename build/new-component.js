@@ -117,7 +117,7 @@ if (!shelljs.test('-e', componentPath) || !shelljs.test('-e', sitePath)) {
   shelljs.sed(
     '-i',
     ']',
-    `  {\n    path: '/components/${singleName.toLowerCase()}',\n    component: ${singleName},\n  },\n]`,
+    `  {\n    path: '/components/${singleName.toKebabCase()}',\n    component: ${singleName},\n  },\n]`,
     routesIndex
   )
 
