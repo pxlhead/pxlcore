@@ -94,25 +94,25 @@ export default {
 
   watch: {
     value: {
-      handler(val) {
-        this.showPopper = val
+      handler(value) {
+        this.showPopper = value
       },
       immediate: true,
     },
-    showPopper(val) {
+    showPopper(value) {
       if (!this.disabled) {
-        if (val) {
+        if (value) {
           this.updatePopper()
         }
 
-        this.$emit('change', val)
+        this.$emit('change', value)
       }
     },
     placement() {
       this.updatePopper()
     },
-    disabled(val) {
-      if (val) {
+    disabled(value) {
+      if (value) {
         this.showPopper = false
       }
     },
