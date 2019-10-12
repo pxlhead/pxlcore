@@ -39,8 +39,8 @@
 </template>
 
 <script>
-import PxlIcon from '../PxlIcon'
-import { sizeProp } from '../../utils/props'
+import PxlIcon from '@/components/PxlIcon'
+import { sizeProp } from '@/utils/props'
 
 export default {
   name: 'PxlInput',

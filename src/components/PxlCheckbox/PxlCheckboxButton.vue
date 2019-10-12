@@ -25,9 +25,9 @@
 </template>
 
 <script>
-import PxlIcon from '../PxlIcon'
-import { sizeProp } from '../../utils/props'
-import { getParentComponent } from '../../utils/vdom'
+import PxlIcon from '@/components/PxlIcon'
+import { sizeProp } from '@/utils/props'
+import { getParentComponent } from '@/utils/vdom'
 
 export default {
   name: 'PxlCheckboxButton',

@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import { toPascalCase } from '../../utils'
-import { sizeXProp } from '../../utils/props'
+import { toPascalCase } from '@/utils'
+import { sizeXProp } from '@/utils/props'
 import * as icons from './icons'
 
 export default {

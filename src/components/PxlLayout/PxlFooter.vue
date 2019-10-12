@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { spacingProp } from '../../utils/props'
+import { spacingProp } from '@/utils/props'
 
 export default {
   name: 'PxlFooter',

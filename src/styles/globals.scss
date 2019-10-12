@@ -1,0 +1,68 @@
+@import 'normalize-scss';
+@include normalize();
+
+// @import 'font.scss';
+
+html {
+  box-sizing: border-box;
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow: hidden;
+  height: 100%;
+  font-size: var(--base-font-size);
+  font-family: var(--font-family);
+  color: var(--color-dark);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+  font-feature-settings: 'liga';
+  -webkit-font-feature-settings: 'liga';
+  -moz-font-feature-settings: 'liga';
+  text-rendering: optimizeLegibility;
+  font-variant-numeric: lining-nums;
+}
+
+.fraction {
+  font-variant-numeric: diagonal-fractions;
+  -moz-font-feature-settings: 'frac';
+  -webkit-font-feature-settings: 'frac';
+  font-feature-settings: 'frac';
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+textarea {
+  resize: vertical;
+}
+
+::-moz-focus-inner {
+  border: 0;
+}
+
+svg {
+  transform: translateZ(0); //fix svg animation bugs
+}

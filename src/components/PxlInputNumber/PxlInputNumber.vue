@@ -56,9 +56,9 @@
 </template>
 
 <script>
-import PxlInput from '../PxlInput'
-import PxlIcon from '../PxlIcon'
-import { sizeProp } from '../../utils/props'
+import PxlInput from '@/components/PxlInput'
+import PxlIcon from '@/components/PxlIcon'
+import { sizeProp } from '@/utils/props'
 
 export default {
   name: 'PxlInputNumber',

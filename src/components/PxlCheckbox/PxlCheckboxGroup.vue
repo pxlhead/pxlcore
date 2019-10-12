@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { sizeProp } from '../../utils/props'
+import { sizeProp } from '@/utils/props'
 
 export default {
   name: 'PxlCheckboxGroup',

@@ -4,10 +4,4 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'App',
-}
-</script>
-
-<style></style>
+<style lang="scss"></style>

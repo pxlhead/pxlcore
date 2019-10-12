@@ -24,8 +24,8 @@
 </template>
 
 <script>
-import { sizeProp } from '../../utils/props'
-import { getParentComponent } from '../../utils/vdom'
+import { sizeProp } from '@/utils/props'
+import { getParentComponent } from '@/utils/vdom'
 
 export default {
   name: 'PxlCheckbox',

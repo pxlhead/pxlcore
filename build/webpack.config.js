@@ -1,110 +1,88 @@
 const path = require('path')
-const webpack = require('webpack')
-const autoprefixer = require('autoprefixer')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const StyleLintPlugin = require('stylelint-webpack-plugin')
-const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
-const TerserPlugin = require('terser-webpack-plugin')
-const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+const fs = require('fs')
+const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
-const isProd = process.env.NODE_ENV === 'production'
+const components = require('../components.js')
+const componentNames = Object.keys(components)
 
-const config = {
-  mode: process.env.NODE_ENV || 'development',
-  entry: './site/index.js',
+const resolve = src => path.resolve(__dirname, '../' + src)
+
+const componentEntries = componentNames.reduce((entries, name) => {
+  entries[`lib/${name}/index`] = resolve(components[name])
+  return entries
+}, {})
+
+const externals = {
+  vue: 'vue',
+}
+componentNames.forEach(function(name) {
+  externals[`@/components/${name}`] = resolve(`lib/${name}`)
+})
+const utilsList = fs.readdirSync(resolve('src/utils'))
+utilsList.forEach(function(file) {
+  file = path.basename(file, '.js')
+  externals[`@/utils/${file}`] = resolve(`lib/utils/${file}`)
+})
+
+module.exports = {
+  mode: 'production',
+  entry: componentEntries,
   output: {
-    path: path.join(__dirname, '../dist'),
-    filename: isProd ? 'index.[chunkhash].js' : 'index.js',
+    path: resolve('/lib/'),
+    publicPath: '/dist/',
+    filename: '[name].js',
+    chunkFilename: '[id].js',
+    libraryTarget: 'commonjs2',
   },
   resolve: {
-    extensions: ['.js', 'vue'],
+    extensions: ['.js', '.vue', '.json'],
+    modules: ['node_modules'],
     alias: {
-      '~': path.join(__dirname, '../src'),
+      '@': resolve('src'),
     },
+  },
+  externals,
+  // performance: {
+  //   hints: false,
+  // },
+  // stats: 'none',
+  optimization: {
+    minimize: false,
   },
   module: {
     rules: [
       {
         test: /\.js$/,
-        exclude: 'node_modules',
+        include: process.cwd(),
         loader: 'babel-loader',
       },
       {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
-          postcss: [autoprefixer()],
+          compilerOptions: {
+            preserveWhitespace: false,
+          },
         },
       },
       {
-        test: /\.pug$/,
-        loader: 'pug-plain-loader',
+        test: /\.css$/,
+        loaders: ['style-loader', 'css-loader'],
       },
       {
         test: /\.scss$/,
-        use: [isProd ? MiniCssExtractPlugin.loader : 'style-loader', 'css-loader', 'sass-loader'],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
         loader: 'url-loader',
-        options: {
+        query: {
           limit: 10000,
-          name: 'assets/img/[name].[hash:7].[ext]',
-        },
-      },
-      {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'url-loader',
-        options: {
-          limit: 10000,
-          name: 'assets/fonts/[name].[hash:7].[ext]',
+          name: path.posix.join('static', '[name].[hash:7].[ext]'),
         },
       },
     ],
   },
-  plugins: [
-    new CaseSensitivePathsPlugin(),
-    new StyleLintPlugin({
-      files: ['**/*.{vue,scss}'],
-    }),
-    new MiniCssExtractPlugin({
-      filename: isProd ? '[name].[contenthash:7].css' : '[name].css',
-    }),
-    new HtmlWebpackPlugin({
-      template: '../site/index.html',
-    }),
-    new VueLoaderPlugin(),
-  ],
-  optimization: {
-    minimizer: [
-      new TerserPlugin({
-        parallel: true,
-        sourceMap: true,
-      }),
-    ],
-  },
+  plugins: [new ProgressBarPlugin(), new VueLoaderPlugin()],
 }
-
-if (!isProd) {
-  config.devtool = '#cheap-module-eval-source-map'
-  config.devServer = {
-    historyApiFallback: true,
-    hot: true,
-    publicPath: '/',
-    port: 8080,
-    stats: 'minimal',
-  }
-  config.plugins.push(new webpack.HotModuleReplacementPlugin())
-  config.plugins.push(new FriendlyErrorsPlugin())
-} else {
-  config.plugins.push(
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'manifest',
-      chunks: ['vendor'],
-    })
-  )
-}
-
-module.exports = config

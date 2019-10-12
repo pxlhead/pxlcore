@@ -29,8 +29,8 @@
 </template>
 
 <script>
-import PxlIcon from '../PxlIcon'
-import { sizeXProp } from '../../utils/props'
+import PxlIcon from '@/components/PxlIcon'
+import { sizeXProp } from '@/utils/props'
 
 export default {
   name: 'PxlButton',

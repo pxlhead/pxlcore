@@ -36,7 +36,7 @@
 
 <script>
 import PopperJS from 'popper.js'
-import { sizeProp } from '../../utils/props'
+import { sizeProp } from '@/utils/props'
 
 export default {
   name: 'PxlPopover',

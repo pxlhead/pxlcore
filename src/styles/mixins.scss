@@ -1,0 +1,7 @@
+@mixin heading($level: 1, $type: interface, $margin: false) {
+  font-size: calc(var(--base-font-size) * 3.5);
+  line-height: calc(var(--base-font-size) * 1.5);
+  margin-top: calc(var(--base-font-size) * 2.5);
+  margin-bottom: calc(var(--base-font-size) * 1.5);
+  letter-spacing: -0.03em;
+}
