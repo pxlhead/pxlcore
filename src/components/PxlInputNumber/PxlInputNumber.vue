@@ -32,7 +32,7 @@
           'pxl-input-number__controls--decrease',
           { 'pxl-input-number__controls--disabled': disabled || minDisabled },
         ]"
-        @mousedown="descrease(false)"
+        @mousedown="decrease(false)"
         @mouseup="stopStepTimeout"
         @mouseleave="stopStepTimeout"
       >
@@ -250,9 +250,9 @@ export default {
       )
       this.setValue(value)
 
-      this.decrease = setTimeout(
+      this.stepTimeout = setTimeout(
         () => {
-          this.increase(true)
+          this.decrease(true)
         },
         recursive ? this.stepSpeed : this.stepDelay
       )
