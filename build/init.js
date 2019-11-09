@@ -4,7 +4,19 @@ const path = require('path')
 const components = require('../components.js')
 const componentNames = Object.keys(components)
 
-const { toKebabCase } = require('../src/utils')
+const toKebabCase = str =>
+  str
+    .split(/(?=[A-Z])/)
+    .join('-')
+    .toLowerCase()
+
+const getComponentsListFile = name =>
+  `module.exports = {
+  ${componentNames
+    .map(componentName => `${componentName}: 'src/components/${componentName}/index.js'`)
+    .join(',\n  ')},
+  ${name}: 'src/components/${name}/index.js',
+}\n`
 
 const getComponentVueFile = name =>
   `<template>
@@ -65,7 +77,7 @@ const getIndexFile = () =>
   `${componentNames.map(name => `import ${name} from './${name}'`).join('\n')}
 
 const components = [
-  ${componentNames.join('\n')}
+  ${componentNames.join(',\n  ')},
 ]
 
 const install = Vue => {
@@ -79,7 +91,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export {
-  ${componentNames.join('\n')}
+  ${componentNames.join(',\n  ')},
 }
 
 export default install\n`
@@ -103,28 +115,27 @@ if (singleName.slice(0, 3).toLowerCase() === 'pxl') {
 
 const name = `Pxl${singleName}`
 const rootDir = path.join(__dirname, '..')
+const componentsListPath = 'components.js'
 const componentPath = `src/components/${name}`
-const componentSitePath = `site/pages/components/${singleName}`
+const componentSitePath = `site/views/components/${singleName}.vue`
 const indexPath = 'src/components/index.js'
 
-if (!shelljs.test('-e', componentPath) || !shelljs.test('-e', componentSitePath)) {
+if (
+  !componentNames.includes(name) &&
+  !shelljs.test('-e', componentPath) &&
+  !shelljs.test('-e', componentSitePath)
+) {
   shelljs.mkdir('-p', componentPath)
   shelljs.cd(componentPath)
   writeToFile(getComponentVueFile(name), `${name}.vue`)
   writeToFile(getComponentSpecFile(name), `${name}.test.js`)
   writeToFile(getComponentIndexFile(name), 'index.js')
 
-  shelljs.mkdir('-p', componentSitePath)
-  shelljs.cd(componentSitePath)
-  writeToFile(getComponentSiteFile(singleName), `${singleName}.vue`)
-
   shelljs.cd(rootDir)
+  writeToFile(getComponentsListFile(name), componentsListPath)
+  writeToFile(getComponentSiteFile(singleName), componentSitePath)
   writeToFile(getIndexFile(), indexPath)
-
-  shelljs.cd(rootDir)
 } else {
   shelljs.echo(`Component ${name} already exists`)
   shelljs.exit(1)
 }
-
-shelljs.exec('npm run format')
