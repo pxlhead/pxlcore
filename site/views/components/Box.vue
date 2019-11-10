@@ -1,11 +1,11 @@
 <template>
-  <div class="layout">
-    <pxl-layout />
+  <div class="box">
+    <pxl-box />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Layout',
+  name: 'Box',
 }
 </script>

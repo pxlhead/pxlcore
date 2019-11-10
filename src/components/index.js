@@ -1,24 +1,20 @@
-import PxlIcon from './PxlIcon'
+import PxlBox from './PxlBox'
 import PxlButton from './PxlButton'
-import PxlRow from './PxlRow'
-import PxlCol from './PxlCol'
-import PxlLayout from './PxlLayout'
-import PxlInput from './PxlInput'
-import PxlRadio from './PxlRadio'
 import PxlCheckbox from './PxlCheckbox'
-import PxlPopover from './PxlPopover'
+import PxlIcon from './PxlIcon'
+import PxlInput from './PxlInput'
 import PxlInputNumber from './PxlInputNumber'
+import PxlPopover from './PxlPopover'
+import PxlRadio from './PxlRadio'
 
 const components = [
-  PxlInputNumber,
-  PxlPopover,
+  PxlBox,
+  PxlButton,
   PxlCheckbox,
   PxlIcon,
-  PxlButton,
-  PxlRow,
-  PxlCol,
-  PxlLayout,
   PxlInput,
+  PxlInputNumber,
+  PxlPopover,
   PxlRadio,
 ]
 
@@ -32,17 +28,6 @@ if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue)
 }
 
-export {
-  PxlInputNumber,
-  PxlPopover,
-  PxlCheckbox,
-  PxlIcon,
-  PxlButton,
-  PxlRow,
-  PxlCol,
-  PxlLayout,
-  PxlInput,
-  PxlRadio,
-}
+export { PxlBox, PxlButton, PxlCheckbox, PxlIcon, PxlInput, PxlInputNumber, PxlPopover, PxlRadio }
 
 export default install
