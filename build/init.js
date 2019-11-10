@@ -10,12 +10,12 @@ const toKebabCase = str =>
     .join('-')
     .toLowerCase()
 
-const getComponentsListFile = name =>
+const getComponentsListFile = () =>
   `module.exports = {
   ${componentNames
+    .sort()
     .map(componentName => `${componentName}: 'src/components/${componentName}/index.js'`)
     .join(',\n  ')},
-  ${name}: 'src/components/${name}/index.js',
 }\n`
 
 const getComponentVueFile = name =>
@@ -120,11 +120,9 @@ const componentPath = `src/components/${name}`
 const componentSitePath = `site/views/components/${singleName}.vue`
 const indexPath = 'src/components/index.js'
 
-if (
-  !componentNames.includes(name) &&
-  !shelljs.test('-e', componentPath) &&
-  !shelljs.test('-e', componentSitePath)
-) {
+if (!shelljs.test('-e', componentPath) && !shelljs.test('-e', componentSitePath)) {
+  componentNames.push(name)
+
   shelljs.mkdir('-p', componentPath)
   shelljs.cd(componentPath)
   writeToFile(getComponentVueFile(name), `${name}.vue`)
