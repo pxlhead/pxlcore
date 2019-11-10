@@ -14,7 +14,7 @@
         {{ label }}
       </label>
     </slot>
-    <div class="pxl-radi-group__container">
+    <div class="pxl-checkbox-group__container">
       <slot />
     </div>
   </div>
