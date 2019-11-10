@@ -8,6 +8,7 @@ import Home from './views/Home.vue'
 
 const componentViewNames = Object.keys(components).map(name => name.slice(3))
 const componentRoutes = componentViewNames.map(name => ({
+  name: `Pxl${name}`,
   path: `/components/${toKebabCase(name)}`,
   component: () => import(/* webpackChunkName: "components" */ `./views/components/${name}.vue`),
 }))
