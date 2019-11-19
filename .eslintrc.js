@@ -3,7 +3,7 @@ module.exports = {
   env: {
     node: true,
   },
-  extends: ['plugin:vue/recommended', '@vue/prettier'],
+  extends: ['plugin:vue/recommended', '@vue/prettier', 'eslint:recommended'],
   rules: {
     'vue/require-default-prop': 0,
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
