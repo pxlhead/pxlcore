@@ -6,8 +6,6 @@
   "vetur.format.defaultFormatter.css": "prettier",
   "vetur.format.defaultFormatter.js": "prettier",
 
-  "prettier.eslintIntegration": true,
-
   "eslint.autoFixOnSave": true,
   "eslint.options": { "extensions": [".html", ".js", ".vue", ".jsx"] },
   "eslint.validate": [
